@@ -4,7 +4,6 @@ const port = process.env.PORT || 3000;
 const stats =  require('./routes/stats');
 const teams =  require('./routes/teams');
 const loadData = require('./data/data').loadData;
-//const football_df = require('./data/data').football_df;
 
 const app = express();
 app.use(bodyParser.json())

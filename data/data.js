@@ -1,16 +1,18 @@
 const DataFrame = require('dataframe-js').DataFrame;
 const fs = require("fs");
-const df_filename = "football-history.csv";
-const df_fullpath = __dirname + "/" + df_filename;
-const teams_filename = "teams.txt";
-const teams_fullpath = __dirname + "/" + teams_filename;
+const dfFilename = "football-history.csv";
+const dfFullpath = __dirname + "/" + dfFilename;
+const teamsFilename = "teams.txt";
+const teamsFullpath = __dirname + "/" + teamsFilename;
 const data = {};
 
 exports.data = data;
 exports.loadData = function(callback){
-    DataFrame.fromCSV(df_fullpath).then(df => {
-        data.football_df = df;
-        fs.readFile(teams_fullpath, function(err, file){
+    // load football stats csv source:
+    // https://www.kaggle.com/martj42/international-football-results-from-1872-to-2017
+    DataFrame.fromCSV(dfFullpath).then(df => {
+        data.footballDf = df;
+        fs.readFile(teamsFullpath, function(err, file){
             if (err) throw err;
             data.teams = file.toString('utf-8').split('\n');
         }); 
